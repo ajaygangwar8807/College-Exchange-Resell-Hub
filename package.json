@@ -1,0 +1,29 @@
+{
+  "name": "college-exchange-resell-hub",
+  "version": "1.0.0",
+  "description": "Full-stack MERN College Exchange & Resell Hub BCA Final Year Project",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "seed:admin": "cd server && npm run seed:admin",
+    "seed:data": "cd server && npm run seed:data",
+    "build:client": "cd client && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "node",
+    "college-marketplace",
+    "resell-hub"
+  ],
+  "author": "BCA Final Year Student",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^7.6.0"
+  }
+}

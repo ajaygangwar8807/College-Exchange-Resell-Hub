@@ -1,0 +1,16 @@
+const express = require('express');
+const router = express.Router();
+const {
+  createExchangeRequest,
+  getMyExchanges,
+  getExchangeById,
+  updateExchangeStatus,
+} = require('../controllers/exchangeController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.post('/', protect, createExchangeRequest);
+router.get('/', protect, getMyExchanges);
+router.get('/:id', protect, getExchangeById);
+router.patch('/:id', protect, updateExchangeStatus);
+
+module.exports = router;
