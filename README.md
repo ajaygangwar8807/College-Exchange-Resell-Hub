@@ -320,6 +320,123 @@ VITE_API_URL=http://localhost:5000/api
 
 ---
 
+## 🚀 How to Run the Project (Project Kaise Run Karein)
+
+Follow these step-by-step instructions to run the application locally on your computer.
+
+### 📋 Prerequisites (Prerequisite Check)
+1. **Node.js** (v16.x or higher) installed on your system. Verify with `node -v`.
+2. **MongoDB** running locally on `mongodb://127.0.0.1:27017` **OR** a cloud connection string from **MongoDB Atlas**.
+
+---
+
+### 1️⃣ Step 1: Clone or Open Project Directory
+Open your terminal (PowerShell, Command Prompt, or Git Bash) in the project root directory:
+```bash
+cd "College Exchange  Resell Hub"
+```
+
+---
+
+### 2️⃣ Step 2: Create Environment File (`.env`)
+Create a `.env` file in the root directory (copy from `.env.example`):
+```env
+PORT=5000
+NODE_ENV=development
+
+CLIENT_URL=http://localhost:5173
+
+MONGO_URI=mongodb://127.0.0.1:27017/college_exchange_hub
+
+JWT_SECRET=bca_college_book_exchange_super_secret_jwt_key_2026
+
+ADMIN_EMAIL=admin@collegeexchange.edu
+ADMIN_PASSWORD=AdminPass123!
+
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+### 3️⃣ Step 3: Install All Dependencies
+Run the following commands to install dependencies for root, backend server, and frontend client:
+
+```bash
+# 1. Install root dependencies
+npm install
+
+# 2. Install backend dependencies
+cd server
+npm install
+
+# 3. Install frontend dependencies
+cd ../client
+npm install
+
+# 4. Return to root directory
+cd ..
+```
+
+---
+
+### 4️⃣ Step 4: Seed Database (Admin & Sample Book Data)
+Before starting the servers, populate your MongoDB database with the default Admin user and academic book categories:
+
+```bash
+# Create default Admin account
+npm run seed:admin
+
+# Create academic categories & demo BCA textbook listings
+npm run seed:data
+```
+
+---
+
+### 5️⃣ Step 5: Start the Backend & Frontend Servers
+
+#### Option A: Running from Root Directory (Recommended)
+Open **two terminal windows** in the root directory:
+
+* **Terminal 1 (Backend Express Server)**:
+  ```bash
+  npm run server:dev
+  ```
+  *(Server runs at `http://localhost:5000`)*
+
+* **Terminal 2 (Frontend React/Vite Client)**:
+  ```bash
+  npm run client
+  ```
+  *(Client opens at `http://localhost:5173`)*
+
+#### Option B: Running from Subdirectories
+* **Terminal 1 (Backend)**:
+  ```bash
+  cd server
+  npm run dev
+  ```
+
+* **Terminal 2 (Frontend)**:
+  ```bash
+  cd client
+  npm run dev
+  ```
+
+---
+
+### 🔑 Default Demo Login Credentials
+
+Once the application is running, open `http://localhost:5173` in your web browser. You can log in using these demo credentials:
+
+* 👨‍🎓 **Student Demo Account**:
+  - Email: `alex@college.edu`
+  - Password: `StudentPass123!`
+* 👑 **Admin Demo Account**:
+  - Email: `admin@collegeexchange.edu`
+  - Password: `AdminPass123!`
+
+---
+
 ## 📂 Project Structure
 
 ```text
