@@ -263,6 +263,57 @@ const ProductDetails = () => {
             </div>
           </div>
 
+          {/* Book Specifications Card */}
+          <div className="p-5 bg-indigo-50/60 rounded-2xl border border-indigo-100 space-y-3">
+            <h3 className="text-xs font-extrabold text-indigo-900 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>Book Specifications & Academic Info</span>
+            </h3>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              {product.author && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Author(s)</span>
+                  <span className="font-bold text-slate-800">{product.author}</span>
+                </div>
+              )}
+              {product.semester && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Semester</span>
+                  <span className="font-extrabold text-indigo-700">{product.semester}</span>
+                </div>
+              )}
+              {product.subject && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Subject</span>
+                  <span className="font-semibold text-slate-800">{product.subject}</span>
+                </div>
+              )}
+              {product.edition && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Edition</span>
+                  <span className="font-semibold text-slate-800">{product.edition}</span>
+                </div>
+              )}
+              {product.publisher && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Publisher</span>
+                  <span className="font-semibold text-slate-800">{product.publisher}</span>
+                </div>
+              )}
+              {product.course && (
+                <div>
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">Course / Branch</span>
+                  <span className="font-semibold text-slate-800">{product.course}</span>
+                </div>
+              )}
+              {product.isbn && (
+                <div className="col-span-2">
+                  <span className="text-slate-400 block text-[10px] font-bold uppercase">ISBN Number</span>
+                  <span className="font-mono text-slate-700">{product.isbn}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* Description */}
           <div>
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Item Description</h3>

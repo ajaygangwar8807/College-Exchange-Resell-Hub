@@ -15,15 +15,15 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const categoriesData = [
-  { name: 'Books', slug: 'books', description: 'Academic textbooks, novels, and reference materials', icon: 'BookOpen' },
-  { name: 'Notes', slug: 'notes', description: 'Handwritten notes, exam prep guides, and lab manuals', icon: 'FileText' },
-  { name: 'Electronics', slug: 'electronics', description: 'Laptops, tablets, headphones, chargers, and accessories', icon: 'Laptop' },
-  { name: 'Calculators', slug: 'calculators', description: 'Scientific & graphic calculators (Casio, TI-84, etc.)', icon: 'Calculator' },
-  { name: 'Lab Equipment', slug: 'lab-equipment', description: 'Lab coats, safety goggles, dissecting kits, drawing instruments', icon: 'FlaskConical' },
-  { name: 'Bags', slug: 'bags', description: 'Backpacks, laptop sleeves, and tote bags', icon: 'ShoppingBag' },
-  { name: 'Furniture', slug: 'furniture', description: 'Dorm study chairs, foldable desks, desk lamps, organizers', icon: 'Armchair' },
-  { name: 'Stationery', slug: 'stationery', description: 'Drafting tools, binders, highlighters, notebook packs', icon: 'PenTool' },
-  { name: 'Other', slug: 'other', description: 'General college essentials, sports equipment, and miscellaneous', icon: 'Grid' },
+  { name: 'BCA Textbooks', slug: 'bca-textbooks', description: 'Core standard textbooks for BCA syllabus semesters', icon: 'BookOpen' },
+  { name: 'Programming Books', slug: 'programming-books', description: 'C, C++, Java, Python, and C# programming references', icon: 'Code' },
+  { name: 'DSA & Computer Science', slug: 'dsa-computer-science', description: 'Data Structures, Algorithms, Theory of Computation, and Discrete Math', icon: 'Cpu' },
+  { name: 'DBMS & Operating Systems', slug: 'dbms-operating-systems', description: 'Database System Concepts, SQL, Linux, and OS Architecture', icon: 'Database' },
+  { name: 'Networking & Web Development', slug: 'networking-web-development', description: 'Computer Networks, HTML/CSS/JS, React, and Web Technologies', icon: 'Globe' },
+  { name: 'BCA Notes & Lab Manuals', slug: 'bca-notes-lab-manuals', description: 'Handwritten notes, practical lab manuals, and solved question papers', icon: 'FileText' },
+  { name: 'Exam Preparation & Reference Books', slug: 'exam-prep-reference', description: 'University exam guides, solved papers, and reference handbooks', icon: 'GraduationCap' },
+  { name: 'NIMCET / Entrance Preparation', slug: 'nimcet-entrance-prep', description: 'NIMCET, MCA entrance guides, and quantitative aptitude books', icon: 'Award' },
+  { name: 'Other Academic Books', slug: 'other-academic-books', description: 'General academic books, science guides, and calculators', icon: 'BookMarked' },
 ];
 
 const seedData = async () => {
@@ -42,7 +42,7 @@ const seedData = async () => {
     // Keep admin users, delete test students
     await User.deleteMany({ role: 'student' });
 
-    console.log('[Seed Data]: Inserting Categories...');
+    console.log('[Seed Data]: Inserting Academic Categories...');
     await Category.insertMany(categoriesData);
 
     console.log('[Seed Data]: Creating Demo Student Users...');
@@ -79,82 +79,124 @@ const seedData = async () => {
       profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
     });
 
-    console.log('[Seed Data]: Creating Sample Products...');
+    console.log('[Seed Data]: Creating Sample BCA Textbooks...');
     const p1 = await Product.create({
       seller: user1._id,
-      title: 'Database System Concepts (7th Edition) - Silberschatz',
-      description: 'Used for BCA Semester 4 DBMS course. Clean pages, no highlighting, contains complete SQL exercises section.',
-      category: 'Books',
+      title: 'Database System Concepts (7th Edition)',
+      description: 'Standard textbook for BCA Semester 4 DBMS course. Clean pages, no highlighting, contains complete SQL & Relational Algebra exercises.',
+      category: 'DBMS & Operating Systems',
       price: 45,
       condition: 'Like New',
       images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800'],
       listingType: 'sell',
       location: 'Central Campus Library',
+      author: 'Silberschatz, Korth & Sudarshan',
+      edition: '7th Edition',
+      publisher: 'McGraw-Hill Education',
+      subject: 'Database Management Systems (DBMS)',
+      semester: 'Sem 4',
+      course: 'BCA',
+      isbn: '978-0078022159',
       status: 'available',
     });
 
     const p2 = await Product.create({
       seller: user1._id,
-      title: 'Casio FX-991EX ClassWiz Scientific Calculator',
-      description: 'Solar powered, 552 functions. Essential for Discrete Mathematics & Statistics labs. Works perfectly with fresh backup battery.',
-      category: 'Calculators',
-      price: 25,
+      title: 'Data Structures Using C (2nd Edition)',
+      description: 'Essential reference book for BCA Semester 3 Data Structures course. Covers Arrays, Linked Lists, Stacks, Queues, Trees, and Graphs with C code.',
+      category: 'DSA & Computer Science',
+      price: 35,
       condition: 'Good',
-      images: ['https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48b?auto=format&fit=crop&q=80&w=800'],
+      images: ['https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=800'],
       listingType: 'both',
       location: 'Computer Lab 3 Block B',
+      author: 'Reema Thareja / Aaron M. Tenenbaum',
+      edition: '2nd Edition',
+      publisher: 'Oxford University Press',
+      subject: 'Data Structures & Algorithms',
+      semester: 'Sem 3',
+      course: 'BCA',
+      isbn: '978-0198099307',
       status: 'available',
     });
 
     const p3 = await Product.create({
       seller: user2._id,
-      title: 'Complete Java Data Structures & Algorithms Notes Bundle',
-      description: 'Complete handwritten and typed notes with code snippets for BCA 3rd sem DSA exam prep. Includes solved previous year questions.',
-      category: 'Notes',
+      title: 'Complete BCA Sem 3 Java Programming Notes & Lab Solved Manual',
+      description: 'Complete handwritten and typed notes with code snippets for BCA 3rd sem Object Oriented Programming using Java. Includes solved lab assignments.',
+      category: 'BCA Notes & Lab Manuals',
       price: 15,
       condition: 'New',
       images: ['https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800'],
       listingType: 'sell',
       location: 'Student Activity Center',
+      author: 'Priya Sharma (Top Scorer Notes)',
+      edition: '2025/2026 Batch',
+      publisher: 'Self Notes',
+      subject: 'Java OOP & Event Driven Programming',
+      semester: 'Sem 3',
+      course: 'BCA',
+      isbn: 'N/A',
       status: 'available',
     });
 
     const p4 = await Product.create({
       seller: user2._id,
-      title: 'Logitech MX Master 3S Wireless Mouse',
-      description: 'Ultra-fast quiet scrolling mouse. Great for coding and graphic work. Includes USB dongle and charging cable.',
-      category: 'Electronics',
-      price: 65,
+      title: 'Operating System Concepts (10th Edition)',
+      description: 'The dinosaur book for OS. Covers process scheduling, memory management, file systems, and concurrency control. Clean condition.',
+      category: 'DBMS & Operating Systems',
+      price: 50,
       condition: 'Like New',
-      images: ['https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&q=80&w=800'],
+      images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800'],
       listingType: 'both',
       location: 'Dorm Block 4 Quad',
+      author: 'Silberschatz, Galvin & Gagne',
+      edition: '10th Edition',
+      publisher: 'Wiley',
+      subject: 'Operating Systems Architecture',
+      semester: 'Sem 4',
+      course: 'BCA',
+      isbn: '978-1119800361',
       status: 'available',
     });
 
     const p5 = await Product.create({
       seller: user3._id,
-      title: 'Ergonomic Mesh Study Chair with Lumbar Support',
-      description: 'Black breathable mesh chair with adjustable height and tilt lock. Perfect for long programming sessions in campus dorms.',
-      category: 'Furniture',
-      price: 50,
+      title: 'Computer Networking: A Top-Down Approach (8th Edition)',
+      description: 'BCA Semester 5 Networking textbook. Covers TCP/IP, OSI layers, HTTP/DNS protocols, and Wireshark lab exercises.',
+      category: 'Networking & Web Development',
+      price: 40,
       condition: 'Good',
-      images: ['https://images.unsplash.com/photo-1580481072645-022f9a6d1270?auto=format&fit=crop&q=80&w=800'],
+      images: ['https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=800'],
       listingType: 'sell',
       location: 'Boy Dorm Hostel 2',
+      author: 'James F. Kurose & Keith W. Ross',
+      edition: '8th Edition',
+      publisher: 'Pearson',
+      subject: 'Computer Networks & Security',
+      semester: 'Sem 5',
+      course: 'BCA',
+      isbn: '978-0136681557',
       status: 'available',
     });
 
     const p6 = await Product.create({
       seller: user3._id,
-      title: 'White Cotton Lab Coat (Size L) & Safety Glasses Set',
-      description: 'Standard white chemistry/physics lab coat with front pockets. Used only for one semester practical exam.',
-      category: 'Lab Equipment',
-      price: 18,
+      title: 'NIMCET Computer Awareness & Mathematics Guide',
+      description: 'Comprehensive entrance preparation book for NIMCET MCA entrance exams with previous 10 years solved papers and short tricks.',
+      category: 'NIMCET / Entrance Preparation',
+      price: 25,
       condition: 'Good',
-      images: ['https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800'],
+      images: ['https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800'],
       listingType: 'exchange',
       location: 'Science Block C Ground Floor',
+      author: 'Arihant Experts',
+      edition: '2025 Edition',
+      publisher: 'Arihant Publications',
+      subject: 'Computer Fundamentals & MCA Entrance Math',
+      semester: 'Sem 6',
+      course: 'BCA',
+      isbn: '978-9325791242',
       status: 'available',
     });
 

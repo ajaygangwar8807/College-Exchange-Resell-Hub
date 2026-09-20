@@ -12,11 +12,15 @@ const getProducts = async (req, res) => {
 
     const query = { status: 'available' };
 
-    // Search by title/description
+    // Search by title, description, location, author, subject, or isbn
     if (req.query.keyword) {
       query.$or = [
         { title: { $regex: req.query.keyword, $options: 'i' } },
         { description: { $regex: req.query.keyword, $options: 'i' } },
+        { author: { $regex: req.query.keyword, $options: 'i' } },
+        { subject: { $regex: req.query.keyword, $options: 'i' } },
+        { publisher: { $regex: req.query.keyword, $options: 'i' } },
+        { isbn: { $regex: req.query.keyword, $options: 'i' } },
         { location: { $regex: req.query.keyword, $options: 'i' } },
       ];
     }
@@ -24,6 +28,26 @@ const getProducts = async (req, res) => {
     // Category filter
     if (req.query.category && req.query.category !== 'All') {
       query.category = req.query.category;
+    }
+
+    // Semester filter
+    if (req.query.semester && req.query.semester !== 'All') {
+      query.semester = req.query.semester;
+    }
+
+    // Course filter
+    if (req.query.course && req.query.course !== 'All') {
+      query.course = req.query.course;
+    }
+
+    // Author filter
+    if (req.query.author) {
+      query.author = { $regex: req.query.author, $options: 'i' };
+    }
+
+    // Subject filter
+    if (req.query.subject) {
+      query.subject = { $regex: req.query.subject, $options: 'i' };
     }
 
     // Condition filter
@@ -95,7 +119,23 @@ const getProductById = async (req, res) => {
 // @access  Private (Student)
 const createProduct = async (req, res) => {
   try {
-    const { title, description, category, price, condition, listingType, location, images } = req.body;
+    const {
+      title,
+      description,
+      category,
+      price,
+      condition,
+      listingType,
+      location,
+      images,
+      author,
+      edition,
+      publisher,
+      subject,
+      semester,
+      course,
+      isbn,
+    } = req.body;
 
     if (!title || !description || !category || !condition) {
       return res.status(400).json({
@@ -139,6 +179,13 @@ const createProduct = async (req, res) => {
       images: imageUrls,
       listingType: listingType || 'sell',
       location: location || req.user.college || 'Campus',
+      author: author || '',
+      edition: edition || '',
+      publisher: publisher || '',
+      subject: subject || '',
+      semester: semester || 'Sem 1',
+      course: course || 'BCA',
+      isbn: isbn || '',
       status: 'available',
     });
 
@@ -183,6 +230,13 @@ const updateProduct = async (req, res) => {
     product.condition = req.body.condition || product.condition;
     product.listingType = req.body.listingType || product.listingType;
     product.location = req.body.location || product.location;
+    if (req.body.author !== undefined) product.author = req.body.author;
+    if (req.body.edition !== undefined) product.edition = req.body.edition;
+    if (req.body.publisher !== undefined) product.publisher = req.body.publisher;
+    if (req.body.subject !== undefined) product.subject = req.body.subject;
+    if (req.body.semester !== undefined) product.semester = req.body.semester;
+    if (req.body.course !== undefined) product.course = req.body.course;
+    if (req.body.isbn !== undefined) product.isbn = req.body.isbn;
     if (req.body.status) product.status = req.body.status;
     if (req.body.images) product.images = req.body.images;
 

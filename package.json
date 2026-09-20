@@ -1,7 +1,7 @@
 {
   "name": "college-exchange-resell-hub",
   "version": "1.0.0",
-  "description": "Full-stack MERN College Exchange & Resell Hub BCA Final Year Project",
+  "description": "Full-stack MERN BCA College Book Exchange / Resell Hub BCA Final Year Project",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",

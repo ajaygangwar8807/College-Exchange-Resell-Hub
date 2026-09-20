@@ -1,279 +1,346 @@
-# 🎓 College Exchange / Resell Hub
+# 🎓 BCA College Book Exchange / Resell Hub
 
-A full-stack **MERN-based college marketplace** where students can buy, sell, and exchange used academic and personal items within their college community.
+A full-stack **MERN-based academic book marketplace** where college students can buy, sell, and exchange used textbooks, course materials, and study resources within their college community.
 
-The platform provides a secure and organized way for students to list products, discover items, send inquiries, place purchase requests, exchange products, manage wishlists, write reviews, and report inappropriate listings.
+The platform provides a secure, organized way for students to list academic books, discover course materials, send seller inquiries, place purchase requests, exchange books across semesters, manage wishlists, submit seller reviews, and report inappropriate listings.
 
 ---
 
 ## 📌 Project Overview
 
-**College Exchange / Resell Hub** is a student-focused marketplace developed as a final-year BCA project.
+**BCA College Book Exchange / Resell Hub** is a hyper-local, college-specific peer-to-peer academic book marketplace web application developed as a final-year BCA project for **Invertis University**.
+
+### Project Purpose
+A full-stack MERN-based platform where college students can buy, sell, and exchange used academic books and study material within their college community.
+
+### Academic Focus Areas
+The platform is specifically tailored for study material including:
+
+* 📚 **Academic Textbooks** (BCA, MCA, B.Sc CS, B.Tech, etc.)
+* 💻 **Programming Books** (C, C++, Java, Python, JavaScript, Go)
+* 🧠 **DSA & Computer Science Books** (Algorithms, Data Structures, Theory of Computation)
+* 🗄️ **DBMS & Operating Systems Books** (SQL, Database Concepts, Linux/OS Principles)
+* 🌐 **Networking & Web Development Books** (Computer Networks, Full-Stack Web Dev)
+* 📝 **BCA Notes & Lab Manuals** (Semester lecture notes, practical lab guides)
+* 📖 **Exam Preparation & Reference Books** (Model papers, question banks)
+* 🎯 **NIMCET / Entrance Preparation Books** (MCA entrance study guides)
+* 📑 **Other Academic Books** (General reference books, mathematics, humanities)
 
 Students can use the platform to:
 
-* 🛒 Buy used products
-* 🏷️ Sell their unused items
-* 🔄 Exchange products with other students
-* 🔍 Search and filter listings
-* ❤️ Save products to wishlist
-* 💬 Send inquiries to sellers
-* 📦 Manage purchase/order requests
-* 🔄 Manage exchange requests
-* ⭐ Review completed transactions
-* 🚨 Report fake, inappropriate, or suspicious listings
-* 👤 Manage their profile
-* 📊 Track their marketplace activity
+* 🛒 **Buy** affordable used academic books from campus peers
+* 🏷️ **Sell** books and study materials they no longer need
+* 🔄 **Exchange** books with other students across semesters
+* 🔍 **Search and filter** listings by title, author, subject, semester, and course
+* ❤️ **Save** books to a personal wishlist
+* 💬 **Send inquiries** to sellers for book availability
+* 📦 **Place purchase/order requests** for campus pickup
+* 🔄 **Propose and complete book exchanges**
+* ⭐ **Review** completed transactions
+* 🚨 **Report** fake, inappropriate, or suspicious book listings
+* 👤 **Manage** student profile and academic details
+* 📊 **Track** personal marketplace activity via student dashboard
 
-Administrators can manage users, products, orders, exchanges, inquiries, reports, and categories from a dedicated admin panel.
+Administrators can manage users, academic book listings, orders, exchange requests, inquiries, reports, and categories from a dedicated admin panel.
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-## 👨‍🎓 Student Features
+### 👨‍🎓 Student Features
 
-### Authentication
+#### Authentication & Profile Management
+* Student registration (forced student role)
+* Student login with JWT bearer tokens
+* Password hashing using `bcryptjs`
+* Protected route navigation
+* Profile management (academic course, year, college, avatar)
+* Password change functionality
 
-* Student registration
-* Student login
-* JWT-based authentication
-* Password hashing using bcrypt
-* Protected routes
-* Profile management
-* Change password
-* Automatic authentication state handling
+#### Book Marketplace & Listing Management
+* Create academic book listings with book-specific metadata
+* Edit own book listings (details, price, status)
+* Soft-remove own book listings
+* Multiple book image uploads (Cloudinary / File upload)
+* Categorization into academic book categories
+* Book condition classification
+* Listing type selection (Sale, Exchange, Both)
+* Pickup location specifying campus spots
 
-### Product Marketplace
-
-* Create product listings
-* Edit own listings
-* Remove own listings
-* Upload multiple product images
-* Product categories
-* Product condition
-* Selling price
-* Exchange option
-* Product location
-* Listing status
-
-### Search & Filtering
-
-Students can search products using:
-
-* Product name
-* Category
+#### Book Search & Advanced Filtering
+Students can search and filter academic books using:
+* Title, Author, or Subject keywords
+* Academic Category
+* Semester (Sem 1 to Sem 6)
+* Course (BCA, MCA, B.Sc CS, B.Tech, etc.)
 * Price range
-* Condition
-* Listing type
-* Sorting
-* Pagination
+* Book condition
+* Listing type (For Sale, For Exchange, Both)
+* Sorting (Newest, Price: Low to High, Price: High to Low, Oldest)
+* Server-side pagination
 
-### Wishlist
+#### Wishlist
+* Save books to personal wishlist
+* Remove books from wishlist
+* Duplicate wishlist entry prevention
 
-* Add products to wishlist
-* Remove products from wishlist
-* Prevent duplicate wishlist entries
+#### Seller Inquiries
+* Send inquiry messages to book sellers
+* View sent and received inquiries
+* Respond to buyer inquiries
 
-### Inquiries
+#### Order Workflow (Campus Pickup)
+* Send purchase/order requests for available books
+* Track order status (`pending` → `confirmed` → `completed` / `cancelled`)
+* View order history & transaction details
 
-Students can:
+#### Book Exchange Workflow
+* Propose direct book exchanges (e.g. exchanging Semester 1 books for Semester 2 required textbooks)
+* Accept or reject exchange proposals
+* Track exchange status (`pending` → `accepted` → `completed` / `rejected`)
+* Automatic item status transition to `exchanged` upon completion
 
-* Send inquiry to seller
-* View their inquiries
-* Accept/reject/manage inquiry requests
+#### Reviews & Ratings
+* Give 1–5 star ratings and written reviews after completed book transactions
+* Duplicate review prevention (1 review per completed order)
 
-### Orders
-
-Students can:
-
-* Send purchase/order request
-* View order history
-* Track order status
-* Manage order details
-
-### Exchange
-
-Students can:
-
-* Send exchange request
-* Accept/reject exchange requests
-* Track exchange status
-* Complete exchange workflow
-
-### Reviews
-
-* Give 1–5 star rating
-* Write reviews after completed transactions
-* Prevent duplicate reviews
-
-### Reports
-
-Students can report:
-
-* Fake listings
-* Scam
-* Inappropriate content
-* Incorrect information
-* Spam
-* Other issues
+#### Moderation & Reporting
+* Report fake, scam, or inappropriate book listings and suspicious users
+* Track status of submitted reports
 
 ---
 
-# 🛡️ Admin Features
+### 🛡️ Admin Features
 
-The project includes a dedicated admin panel.
+The project includes a dedicated admin moderation panel. Admin accounts manage:
 
-### Admin Dashboard
-
-Displays real database-based statistics such as:
-
-* Total students
-* Total products
-* Total orders
-* Total exchanges
-* Total inquiries
-* Pending reports
-* Categories
-
-### User Management
-
-Admin can:
-
-* View students
-* Search users
-* View user details
-* Block users
-* Unblock users
-* Delete users where appropriate
-* View user activity
-
-Admin cannot delete their own account through normal admin management.
-
-### Product Management
-
-Admin can:
-
-* View products
-* Search products
-* Filter products
-* View product details
-* Remove inappropriate listings
-* Moderate marketplace content
-
-### Order Management
-
-Admin can:
-
-* View orders
-* View order details
-* Update order status
-* Monitor transactions
-
-### Exchange Management
-
-Admin can:
-
-* View exchange requests
-* Monitor exchange status
-* Manage exchange records
-
-### Inquiry Management
-
-Admin can:
-
-* View inquiries
-* Monitor inquiry activity
-
-### Report Management
-
-Admin can:
-
-* View reported products/users
-* Review reports
-* Update report status
-* Resolve or reject reports
-
-### Category Management
-
-Admin can:
-
-* Add categories
-* Edit categories
-* Activate/deactivate categories
-* Manage marketplace categories safely
+* 👥 **Students/Users**: View registered students, search accounts, block/unblock users, delete users.
+* 📚 **Academic Book Listings**: Moderate listings, view book details, soft-remove inappropriate listings, or restore items.
+* 📦 **Orders**: Monitor order requests, view buyer/seller details, audit transactions.
+* 🔄 **Exchange Requests**: Track book exchange proposals and transaction status.
+* 💬 **Inquiries**: Audit buyer-seller inquiry communications.
+* 🚨 **Reports**: Review flagged reports, block malicious users, or remove reported listings.
+* 🏷️ **Academic Categories**: Add, edit, and activate/deactivate academic book categories.
 
 ---
 
-# 🧰 Tech Stack
+## 📚 Book Categories
 
-## Frontend
+The platform supports 9 specialized academic book categories:
 
-* React.js
-* Vite
-* JavaScript
-* JSX
-* React Router DOM
-* Axios
-* Context API
-* Tailwind CSS
-* Lucide React
-
-## Backend
-
-* Node.js
-* Express.js
-* JavaScript
-* REST API
-* CommonJS
-
-## Database
-
-* MongoDB
-* Mongoose
-
-## Authentication & Security
-
-* JWT
-* bcryptjs
-* Helmet
-* CORS
-* Express Rate Limit
-* Request validation
-* Role-based authorization
-* Ownership checks
-
-## Image Upload
-
-* Multer
-* Cloudinary
-
-## Development & Testing
-
-* Nodemon
-* Postman
-* npm
+1. **BCA Textbooks**
+2. **Programming Books**
+3. **DSA & Computer Science**
+4. **DBMS & Operating Systems**
+5. **Networking & Web Development**
+6. **BCA Notes & Lab Manuals**
+7. **Exam Preparation & Reference Books**
+8. **NIMCET / Entrance Preparation**
+9. **Other Academic Books**
 
 ---
 
-# JavaScript
+## 🧰 Tech Stack
 
----
+### Frontend
+* **React.js** (Vite build tool)
+* **JavaScript & JSX**
+* **React Router DOM v6**
+* **Axios** (with JWT request interceptors)
+* **Context API** (AuthContext, ProductContext, WishlistContext)
+* **Tailwind CSS** (Responsive UI framework)
+* **Lucide React** (Modern iconography)
 
-# 📂 Project Structure
+### Backend
+* **Node.js** & **Express.js**
+* **JavaScript** (REST API)
+* **CommonJS** module system
+* **Helmet** & **CORS** (HTTP security headers)
+* **Express Rate Limit** (API rate limiting)
+
+### Database
+* **MongoDB** (NoSQL Database)
+* **Mongoose** (ORM / Schema modeling)
+
+### Authentication & Security
+* **JWT** (JSON Web Tokens)
+* **bcryptjs** (Password hashing)
+* **Request validation** & **ObjectId validation**
+* **Role-based authorization** (`student` vs `admin`)
+* **Ownership checks**
+
+### Image Handling
+* **Multer** (Multipart memory buffer handling)
+* **Cloudinary API** (Cloud image storage with inline Data URI fallback)
+
+## 🗄️ Database Models
+
+The backend manages 9 core Mongoose schema models:
 
 ```text
-College Exchange Resell Hub/
+User
+Category
+Product
+Order
+ExchangeRequest
+Inquiry
+Wishlist
+Review
+Report
+```
+
+### Book Product Schema
+
+The `Product` model includes the following fields:
+
+* `title` (String, Required)
+* `description` (String, Required)
+* `category` (String, Required)
+* `price` (Number, Default: 0)
+* `condition` (Enum: `New`, `Like New`, `Good`, `Fair`, `Used`)
+* `author` (String)
+* `edition` (String)
+* `publisher` (String)
+* `subject` (String)
+* `semester` (String)
+* `course` (String)
+* `isbn` (String)
+* `images` ([String])
+* `listingType` (Enum: `sell`, `exchange`, `both`)
+* `location` (String)
+* `status` (Enum: `available`, `reserved`, `sold`, `exchanged`, `removed`)
+* `seller` (ObjectId ref: `User`)
+* `timestamps` (`createdAt`, `updatedAt`)
+
+### Listing Types
+* `sell` - Book available for purchase
+* `exchange` - Book available for item swap only
+* `both` - Book open for either purchase or exchange
+
+### Book Conditions
+* `New`
+* `Like New`
+* `Good`
+* `Fair`
+* `Used`
+
+### Product Statuses
+* `available` - Active on marketplace
+* `reserved` - Pending purchase order
+* `sold` - Transaction completed (sale)
+* `exchanged` - Transaction completed (exchange)
+* `removed` - Moderated or withdrawn by owner
+
+---
+
+## 🔐 Security Rules
+
+* Passwords are hashed using `bcryptjs` before database persistence.
+* Passwords are never returned in API responses.
+* JWT authentication protects private endpoints via HTTP Bearer headers.
+* Admin APIs require valid JWT with `role === 'admin'`.
+* Public student registration strictly enforces `role: 'student'`.
+* Blocked users (`isBlocked === true`) cannot post listings, place orders, make inquiries, or propose exchanges.
+* Ownership validation ensures students can edit/delete only their own listings.
+* Self-action prevention:
+  * Users **cannot** buy their own book listings.
+  * Users **cannot** send inquiries for their own book listings.
+  * Users **cannot** initiate exchange requests on their own listings.
+* Removed or sold products cannot be ordered or exchanged.
+* Duplicate wishlist entries are strictly prevented.
+* Reviews are allowed only after an order status reaches `completed`.
+* Duplicate reviews are prevented (1 review per completed order).
+* Role or user identity passed in request bodies is never trusted; identity is derived strictly from the verified JWT.
+
+---
+
+## 🌐 API Modules
+
+The backend provides REST APIs under `/api`:
+
+```text
+/api/auth       - Registration, Login, Profile, Password management
+/api/users      - User profile lookups
+/api/products   - Academic book search, filtering, pagination, CRUD operations
+/api/categories - Academic category management
+/api/orders     - Purchase order creation and status tracking
+/api/exchanges  - Book exchange proposals and completion
+/api/inquiries  - Buyer-seller book inquiry messaging
+/api/wishlist   - Saved books wishlist management
+/api/reviews    - Seller rating and feedback submission
+/api/reports    - Listing and user violation reporting
+/api/admin      - System analytics, user blocking, listing moderation
+```
+
+---
+
+## 💳 Payment & Handover Workflow
+
+This is an academic project and does **not** include a real online payment gateway (such as Stripe or Razorpay). 
+
+Orders represent a marketplace purchase request and campus handover workflow. Students connect on campus (e.g. library, canteen, computer lab) to inspect books, exchange funds or swap textbooks, and confirm order completion online.
+
+---
+
+## 🚀 Production Deployment Architecture
+
+The application is designed to be deployed on **Render** using a single Web Service architecture:
+
+* **Web Service (Render)**: Hosts both Backend (Node.js/Express) and Frontend (React build) together. Express serves the static production build from `client/dist` for non-API routes.
+* **Database**: Hosted on **MongoDB Atlas** (cloud database cluster).
+* **Media Storage**: Hosted on **Cloudinary** for book product images.
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in the root directory based on `.env.example`:
+
+```env
+PORT=5000
+NODE_ENV=development
+
+CLIENT_URL=http://localhost:5173
+
+MONGO_URI=mongodb://127.0.0.1:27017/college_exchange_hub
+
+JWT_SECRET=your_jwt_secret_key_here
+
+ADMIN_EMAIL=admin@collegeexchange.edu
+ADMIN_PASSWORD=your_admin_password_here
+
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+
+VITE_API_URL=http://localhost:5000/api
+```
+
+> 🔒 **Security Notice**: Real database connection strings, passwords, or secret keys are never hardcoded or committed to GitHub.
+
+---
+
+## 📂 Project Structure
+
+```text
+BCA College Book Exchange / Resell Hub/
 │
 ├── client/
 │   ├── public/
 │   │
 │   └── src/
 │       ├── components/
+│       │   ├── admin/
+│       │   ├── common/
+│       │   ├── dashboard/
+│       │   └── products/
 │       ├── context/
 │       ├── hooks/
 │       ├── layouts/
 │       ├── pages/
+│       │   ├── admin/
+│       │   ├── auth/
+│       │   └── student/
 │       ├── routes/
 │       ├── services/
 │       ├── utils/
@@ -300,578 +367,48 @@ College Exchange Resell Hub/
 
 ---
 
-# 🗄️ Database Models
+## 🎯 Project Objectives
 
-The backend uses MongoDB with Mongoose.
-
-Main models include:
-
-```text
-User
-Category
-Product
-Order
-ExchangeRequest
-Inquiry
-Wishlist
-Review
-Report
-```
-
-### User
-
-Stores:
-
-* Name
-* Email
-* Password hash
-* Phone
-* College
-* Course
-* Year
-* Profile image
-* Role
-* Block status
-* Preferences
-* Timestamps
-
-### Product
-
-Stores:
-
-* Seller
-* Title
-* Description
-* Category
-* Price
-* Condition
-* Images
-* Listing type
-* Location
-* Status
-* Timestamps
-
-### Listing Types
-
-```text
-sell
-exchange
-both
-```
-
-### Product Conditions
-
-```text
-New
-Like New
-Good
-Fair
-Used
-```
-
-### Product Status
-
-```text
-available
-reserved
-sold
-exchanged
-removed
-```
+1. Build a college-focused academic book marketplace.
+2. Help students buy affordable used books.
+3. Allow students to sell books they no longer need.
+4. Enable student-to-student book exchange.
+5. Provide book-specific search and filtering.
+6. Provide secure authentication and authorization.
+7. Store marketplace data using MongoDB.
+8. Provide admin moderation and management.
+9. Support wishlist, inquiry, order, exchange, review and reporting workflows.
+10. Provide a responsive and user-friendly web application.
 
 ---
 
-# 🔐 Authentication
+## 🔮 Future Enhancements
 
-Authentication is implemented using **JWT**.
-
-### Registration
-
-```http
-POST /api/auth/register
-```
-
-### Login
-
-```http
-POST /api/auth/login
-```
-
-### Current User
-
-```http
-GET /api/auth/me
-```
-
-### Update Profile
-
-```http
-PATCH /api/auth/profile
-```
-
-### Change Password
-
-```http
-PATCH /api/auth/change-password
-```
-
-The backend identifies the logged-in user from the JWT token instead of trusting user identity or role information sent from the frontend.
+* Online payment gateway integration
+* Real-time in-app chat between buyers and sellers
+* Push & email notifications for orders and exchange updates
+* College email domain verification (`@college.edu`)
+* AI-based book recommendations
+* Book recommendations based on student semester and subject
+* ISBN barcode scanning for auto-filling book details
+* Automated book cover image verification
+* Automated fraud detection
+* Mobile application (React Native)
+* Advanced analytics dashboard for campus book trends
 
 ---
 
-# 👑 Admin Authorization
+## 👨‍💻 Project Information
 
-Admin APIs require:
-
-1. Valid JWT
-2. Authenticated user
-3. `role === "admin"`
-
-Students cannot access admin APIs.
-
-Admin accounts should be created through the secure admin seed process rather than allowing normal public registration to create an admin account.
+* **Project Name**: BCA College Book Exchange / Resell Hub
+* **Course**: Bachelor of Computer Applications (BCA)
+* **Institute**: Invertis University
+* **Project Type**: Final-Year BCA Project
+* **Technology**: MERN Stack (MongoDB, Express.js, React.js, Node.js)
+* **Language**: JavaScript (JSX)
 
 ---
 
-# 🔒 Security Rules
+## 📄 License
 
-The application implements important business and security rules.
-
-* Passwords are never returned in API responses.
-* Passwords are hashed using bcrypt.
-* JWT authentication protects private APIs.
-* Admin APIs require admin authorization.
-* Blocked users cannot perform restricted marketplace actions.
-* Users can modify only their own listings.
-* Users cannot modify another user's profile or marketplace data.
-* Users cannot buy their own product.
-* Users cannot send inquiries for their own product.
-* Removed/sold products cannot be purchased.
-* ObjectIds are validated.
-* Duplicate wishlist entries are prevented.
-* Duplicate reviews are prevented.
-* Reviews are allowed only after completed transactions.
-* Frontend role information is never trusted for authorization.
-* Transaction history is preserved where required.
-
----
-
-# 🌐 API Modules
-
-The backend provides REST APIs for:
-
-```text
-Authentication
-Users
-Products
-Categories
-Orders
-Exchanges
-Inquiries
-Wishlist
-Reviews
-Reports
-Admin
-```
-
-Example product endpoints:
-
-```http
-GET    /api/products
-GET    /api/products/:id
-POST   /api/products
-PATCH  /api/products/:id
-DELETE /api/products/:id
-```
-
-Example wishlist endpoints:
-
-```http
-GET    /api/wishlist
-POST   /api/wishlist/:productId
-DELETE /api/wishlist/:productId
-```
-
-Example order endpoints:
-
-```http
-GET    /api/orders
-POST   /api/orders
-GET    /api/orders/:id
-PATCH  /api/orders/:id
-```
-
-Example exchange endpoints:
-
-```http
-GET    /api/exchanges
-POST   /api/exchanges
-GET    /api/exchanges/:id
-PATCH  /api/exchanges/:id
-```
-
----
-
-# ⚙️ Environment Variables
-
-Create a `.env` file using `.env.example`.
-
-Example:
-
-```env
-PORT=5000
-NODE_ENV=development
-
-CLIENT_URL=http://localhost:5173
-
-MONGO_URI=mongodb://127.0.0.1:27017/college_exchange_hub
-
-JWT_SECRET=your_strong_jwt_secret
-
-ADMIN_EMAIL=admin@collegeexchange.edu
-ADMIN_PASSWORD=your_admin_password
-
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-VITE_API_URL=http://localhost:5000/api
-```
-
-### Important
-
-Never commit the real `.env` file to GitHub.
-
-The following values must remain private:
-
-```text
-JWT_SECRET
-ADMIN_PASSWORD
-CLOUDINARY_API_KEY
-CLOUDINARY_API_SECRET
-MONGO_URI
-```
-
----
-
-# 📦 Installation
-
-## 1. Clone Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-Go to the project:
-
-```bash
-cd College-Exchange-Resell-Hub
-```
-
----
-
-## 2. Install Dependencies
-
-Install root dependencies:
-
-```bash
-npm install
-```
-
-Install server dependencies:
-
-```bash
-cd server
-npm install
-```
-
-Install client dependencies:
-
-```bash
-cd ../client
-npm install
-```
-
-Return to root:
-
-```bash
-cd ..
-```
-
----
-
-# 🗃️ Database Setup
-
-The project supports MongoDB.
-
-### Local MongoDB
-
-Example:
-
-```env
-MONGO_URI=mongodb://127.0.0.1:27017/college_exchange_hub
-```
-
-### MongoDB Atlas
-
-For deployment, use a MongoDB Atlas connection string:
-
-```env
-MONGO_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/college_exchange_hub
-```
-
-Make sure the MongoDB Atlas network access and database user are correctly configured.
-
----
-
-# 👑 Seed Admin
-
-After configuring MongoDB:
-
-```bash
-npm run seed:admin
-```
-
-This creates the admin account using:
-
-```env
-ADMIN_EMAIL
-ADMIN_PASSWORD
-```
-
----
-
-# 🌱 Seed Demo Data
-
-To add demo categories/users/listings:
-
-```bash
-npm run seed:data
-```
-
----
-
-# ▶️ Run the Application
-
-## Start Backend
-
-From the root directory:
-
-```bash
-npm run server:dev
-```
-
-Backend:
-
-```text
-http://localhost:5000
-```
-
-## Start Frontend
-
-Open another terminal:
-
-```bash
-npm run client
-```
-
-Frontend:
-
-```text
-http://localhost:5173
-```
-
----
-
-# 🧪 Testing
-
-The API can be tested using:
-
-* Postman
-* Browser
-* curl
-* Node.js test scripts
-
-Important flows to test:
-
-### Student Flow
-
-```text
-Register
-   ↓
-Login
-   ↓
-Browse Products
-   ↓
-View Product
-   ↓
-Wishlist / Inquiry / Order / Exchange
-   ↓
-Manage Dashboard
-   ↓
-Complete Transaction
-   ↓
-Submit Review
-```
-
-### Seller Flow
-
-```text
-Login
-   ↓
-Create Listing
-   ↓
-Upload Images
-   ↓
-Manage Listing
-   ↓
-Receive Inquiry / Order / Exchange
-   ↓
-Complete Transaction
-```
-
-### Admin Flow
-
-```text
-Admin Login
-   ↓
-Admin Dashboard
-   ↓
-Manage Users
-   ↓
-Manage Products
-   ↓
-Manage Orders
-   ↓
-Manage Exchanges
-   ↓
-Manage Inquiries
-   ↓
-Review Reports
-   ↓
-Manage Categories
-```
-
----
-
-# 💳 Payment System
-
-This academic project does **not** include a real payment gateway.
-
-Orders represent a marketplace purchase/request workflow for the college project.
-
-A real payment gateway can be integrated later if required.
-
----
-
-# 🚀 Production Environment
-
-After deployment, update:
-
-```env
-CLIENT_URL=https://your-frontend-domain.com
-```
-
-Backend:
-
-```env
-MONGO_URI=your_mongodb_atlas_connection_string
-```
-
-Frontend:
-
-```env
-VITE_API_URL=https://your-backend-domain.com/api
-```
-
-Do not use:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-in production.
-
----
-
-# 📱 Responsive Design
-
-The frontend is designed for:
-
-* 💻 Desktop
-* 📱 Mobile
-* 📟 Tablet
-
-The UI uses:
-
-* Responsive layouts
-* Product cards
-* Tables
-* Search bars
-* Filters
-* Modals
-* Toast notifications
-* Loading states
-* Empty states
-* Error states
-* Mobile navigation
-
----
-
-# 🎯 Project Objectives
-
-The main objectives of the project are:
-
-1. Build a college-specific marketplace.
-2. Provide a simple buying and selling platform for students.
-3. Support product exchange between students.
-4. Provide secure user authentication.
-5. Store marketplace data using MongoDB.
-6. Provide role-based admin management.
-7. Implement real REST APIs.
-8. Provide search and filtering functionality.
-9. Provide wishlist, inquiry, order, exchange, review, and reporting systems.
-10. Build a responsive and user-friendly web application.
-
----
-
-# 🔮 Future Enhancements
-
-Possible future improvements include:
-
-* Online payment gateway
-* Real-time chat
-* Push notifications
-* Email notifications
-* College email verification
-* Advanced recommendation system
-* AI-based product recommendations
-* Location-based marketplace search
-* Fraud detection
-* Image-based product verification
-* Mobile application
-* Advanced analytics dashboard
-
----
-
-# 👨‍💻 Project Information
-
-**Project:** College Exchange / Resell Hub
-
-**Course:** Bachelor of Computer Applications (BCA)
-
-**Institute:** Invertis University
-
-**Project Type:** Final-Year BCA Project
-
-**Technology:** MERN Stack
-
-**Language:** JavaScript
-
----
-
-# 📄 License
-
-This project is developed for academic and educational purposes.
-
-You may modify and extend the project according to your requirements.
+This project is developed for academic and educational purposes as a final-year BCA project.

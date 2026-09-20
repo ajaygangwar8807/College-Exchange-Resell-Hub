@@ -45,6 +45,41 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: 'Campus Library / Canteen',
     },
+    author: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    edition: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    publisher: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    subject: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    semester: {
+      type: String,
+      enum: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'All Semesters'],
+      default: 'Sem 1',
+    },
+    course: {
+      type: String,
+      default: 'BCA',
+      trim: true,
+    },
+    isbn: {
+      type: String,
+      default: '',
+      trim: true,
+    },
     status: {
       type: String,
       enum: ['available', 'reserved', 'sold', 'exchanged', 'removed'],
@@ -56,6 +91,6 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-productSchema.index({ title: 'text', description: 'text', category: 'text' });
+productSchema.index({ title: 'text', description: 'text', category: 'text', author: 'text', subject: 'text' });
 
 module.exports = mongoose.model('Product', productSchema);

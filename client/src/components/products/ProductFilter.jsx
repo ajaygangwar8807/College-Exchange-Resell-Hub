@@ -1,6 +1,6 @@
 import React from 'react';
-import { CATEGORIES, CONDITIONS, LISTING_TYPES } from '../../utils/constants';
-import { Filter, RotateCcw } from 'lucide-react';
+import { CATEGORIES, CONDITIONS, LISTING_TYPES, SEMESTERS, COURSES } from '../../utils/constants';
+import { Filter, RotateCcw, BookOpen, GraduationCap } from 'lucide-react';
 
 const ProductFilter = ({ filters, onFilterChange, onReset }) => {
   return (
@@ -8,7 +8,7 @@ const ProductFilter = ({ filters, onFilterChange, onReset }) => {
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center space-x-2 text-slate-800 font-bold">
           <Filter className="w-4 h-4 text-indigo-600" />
-          <span>Filter Products</span>
+          <span>Filter Books & Notes</span>
         </div>
         <button
           onClick={onReset}
@@ -19,10 +19,48 @@ const ProductFilter = ({ filters, onFilterChange, onReset }) => {
         </button>
       </div>
 
+      {/* Semester Filter */}
+      <div>
+        <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center space-x-1">
+          <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+          <span>Semester</span>
+        </label>
+        <select
+          value={filters.semester || 'All'}
+          onChange={(e) => onFilterChange('semester', e.target.value)}
+          className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:bg-white focus:ring-2 focus:ring-indigo-500"
+        >
+          {SEMESTERS.map((sem) => (
+            <option key={sem} value={sem}>
+              {sem === 'All' ? 'All Semesters' : sem}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Course Filter */}
+      <div>
+        <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center space-x-1">
+          <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
+          <span>Course Degree</span>
+        </label>
+        <select
+          value={filters.course || 'All'}
+          onChange={(e) => onFilterChange('course', e.target.value)}
+          className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:bg-white focus:ring-2 focus:ring-indigo-500"
+        >
+          {COURSES.map((c) => (
+            <option key={c} value={c}>
+              {c === 'All' ? 'All Courses' : c}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Category Filter */}
       <div>
         <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-          Category
+          Academic Category
         </label>
         <div className="space-y-1 max-h-48 overflow-y-auto pr-1">
           {CATEGORIES.map((cat) => (
@@ -41,7 +79,7 @@ const ProductFilter = ({ filters, onFilterChange, onReset }) => {
                 onChange={() => onFilterChange('category', cat)}
                 className="text-indigo-600 focus:ring-indigo-500 rounded"
               />
-              <span>{cat}</span>
+              <span className="truncate">{cat}</span>
             </label>
           ))}
         </div>
@@ -78,7 +116,7 @@ const ProductFilter = ({ filters, onFilterChange, onReset }) => {
       {/* Condition Filter */}
       <div>
         <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-          Item Condition
+          Book Condition
         </label>
         <select
           value={filters.condition}

@@ -5,6 +5,8 @@ import { ProductContext } from '../../context/ProductContext';
 import { AuthContext } from '../../context/AuthContext';
 import { PlusCircle, Upload, AlertCircle, ArrowLeft } from 'lucide-react';
 
+import { SEMESTERS, COURSES } from '../../utils/constants';
+
 const CreateListing = () => {
   const navigate = useNavigate();
   const { categories } = useContext(ProductContext);
@@ -13,12 +15,19 @@ const CreateListing = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    category: 'Books',
+    category: 'BCA Textbooks',
     price: '',
     condition: 'Good',
     listingType: 'sell',
     location: user?.college || 'Campus Library / Canteen',
     imagesText: '',
+    author: '',
+    edition: '',
+    publisher: '',
+    subject: '',
+    semester: 'Sem 1',
+    course: 'BCA',
+    isbn: '',
   });
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -55,6 +64,13 @@ const CreateListing = () => {
       data.append('condition', formData.condition);
       data.append('listingType', formData.listingType);
       data.append('location', formData.location);
+      data.append('author', formData.author);
+      data.append('edition', formData.edition);
+      data.append('publisher', formData.publisher);
+      data.append('subject', formData.subject);
+      data.append('semester', formData.semester);
+      data.append('course', formData.course);
+      data.append('isbn', formData.isbn);
 
       if (selectedFiles.length > 0) {
         selectedFiles.forEach((file) => data.append('images', file));
@@ -147,6 +163,115 @@ const CreateListing = () => {
               <option value="Fair">Fair</option>
               <option value="Used">Used</option>
             </select>
+          </div>
+        </div>
+
+        {/* Book-Specific Fields */}
+        <div className="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100 space-y-4">
+          <h3 className="text-xs font-extrabold text-indigo-900 uppercase tracking-wider">Book Details (Optional)</h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Author / Writer
+              </label>
+              <input
+                type="text"
+                name="author"
+                value={formData.author}
+                onChange={handleChange}
+                placeholder="e.g. Abraham Silberschatz"
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Subject / Topic
+              </label>
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="e.g. Database Management Systems"
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Semester
+              </label>
+              <select
+                name="semester"
+                value={formData.semester}
+                onChange={handleChange}
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800"
+              >
+                {SEMESTERS.filter((s) => s !== 'All').map((sem) => (
+                  <option key={sem} value={sem}>{sem}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Course / Degree
+              </label>
+              <select
+                name="course"
+                value={formData.course}
+                onChange={handleChange}
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800"
+              >
+                {COURSES.filter((c) => c !== 'All').map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Edition
+              </label>
+              <input
+                type="text"
+                name="edition"
+                value={formData.edition}
+                onChange={handleChange}
+                placeholder="e.g. 7th Edition"
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Publisher
+              </label>
+              <input
+                type="text"
+                name="publisher"
+                value={formData.publisher}
+                onChange={handleChange}
+                placeholder="e.g. McGraw-Hill Education"
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                ISBN Number
+              </label>
+              <input
+                type="text"
+                name="isbn"
+                value={formData.isbn}
+                onChange={handleChange}
+                placeholder="e.g. 978-0073523323"
+                className="w-full p-3 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
           </div>
         </div>
 

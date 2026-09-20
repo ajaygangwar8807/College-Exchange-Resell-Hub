@@ -15,6 +15,8 @@ const Products = () => {
     condition: searchParams.get('condition') || 'All',
     listingType: searchParams.get('listingType') || 'All',
     maxPrice: searchParams.get('maxPrice') || '',
+    semester: searchParams.get('semester') || 'All',
+    course: searchParams.get('course') || 'All',
   });
 
   const [keyword, setKeyword] = useState(searchParams.get('keyword') || '');
@@ -42,6 +44,8 @@ const Products = () => {
           condition: filters.condition,
           listingType: filters.listingType,
           maxPrice: filters.maxPrice,
+          semester: filters.semester,
+          course: filters.course,
           sortBy,
         };
 
@@ -72,6 +76,8 @@ const Products = () => {
       condition: 'All',
       listingType: 'All',
       maxPrice: '',
+      semester: 'All',
+      course: 'All',
     });
     setKeyword('');
     setSortBy('newest');

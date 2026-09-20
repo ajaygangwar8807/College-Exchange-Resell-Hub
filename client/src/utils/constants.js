@@ -2,16 +2,20 @@ export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:50
 
 export const CATEGORIES = [
   'All',
-  'Books',
-  'Notes',
-  'Electronics',
-  'Calculators',
-  'Lab Equipment',
-  'Bags',
-  'Furniture',
-  'Stationery',
-  'Other',
+  'BCA Textbooks',
+  'Programming Books',
+  'DSA & Computer Science',
+  'DBMS & Operating Systems',
+  'Networking & Web Development',
+  'BCA Notes & Lab Manuals',
+  'Exam Preparation & Reference Books',
+  'NIMCET / Entrance Preparation',
+  'Other Academic Books',
 ];
+
+export const SEMESTERS = ['All', 'Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'All Semesters'];
+
+export const COURSES = ['All', 'BCA', 'MCA', 'B.Tech CS/IT', 'B.Sc Computer Science'];
 
 export const CONDITIONS = ['All', 'New', 'Like New', 'Good', 'Fair', 'Used'];
 

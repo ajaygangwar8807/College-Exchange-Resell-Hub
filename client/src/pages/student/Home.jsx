@@ -7,8 +7,9 @@ import {
   BookOpen,
   Laptop,
   Calculator,
-  FlaskConical,
-  ShoppingBag,
+  Code,
+  Database,
+  FileText,
   ArrowRight,
   ShieldCheck,
   Repeat,
@@ -51,10 +52,10 @@ const Home = () => {
   };
 
   const categories = [
-    { name: 'Books & Textbooks', icon: BookOpen, count: '120+ Items', query: 'Books' },
-    { name: 'Electronics & Laptops', icon: Laptop, count: '85+ Items', query: 'Electronics' },
-    { name: 'Calculators', icon: Calculator, count: '45+ Items', query: 'Calculators' },
-    { name: 'Lab Gear & Kits', icon: FlaskConical, count: '30+ Items', query: 'Lab Equipment' },
+    { name: 'BCA Textbooks', icon: BookOpen, count: '120+ Books', query: 'BCA Textbooks' },
+    { name: 'Programming Books', icon: Code, count: '85+ Books', query: 'Programming Books' },
+    { name: 'DSA & CS Core', icon: FileText, count: '65+ Books', query: 'DSA & Computer Science' },
+    { name: 'DBMS & Web Dev', icon: Database, count: '50+ Books', query: 'DBMS & Operating Systems' },
   ];
 
   return (
@@ -197,7 +198,7 @@ const Home = () => {
       <section className="bg-slate-100/80 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">How College Exchange Works</h2>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">How BCA College Book Exchange Works</h2>
             <p className="text-sm text-slate-600 mt-2">
               Three simple steps to start saving money and recycling unused campus items.
             </p>

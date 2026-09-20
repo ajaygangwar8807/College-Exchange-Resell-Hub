@@ -99,7 +99,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} College Exchange & Resell Hub. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} BCA College Book Exchange / Resell Hub. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <span>Built with React, Express, Node.js & MongoDB</span>
           </div>

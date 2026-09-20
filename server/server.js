@@ -62,7 +62,7 @@ app.use('/api/admin', adminRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
-    project: 'College Exchange / Resell Hub MERN API',
+    project: 'BCA College Book Exchange / Resell Hub MERN API',
     timestamp: new Date().toISOString(),
   });
 });

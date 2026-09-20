@@ -103,10 +103,24 @@ const ProductCard = ({ product }) => {
           </div>
 
           <Link to={`/products/${product._id}`}>
-            <h3 className="font-bold text-slate-800 text-base group-hover:text-indigo-600 transition line-clamp-1 mb-1">
+            <h3 className="font-bold text-slate-800 text-base group-hover:text-indigo-600 transition line-clamp-1 mb-0.5">
               {product.title}
             </h3>
           </Link>
+
+          {/* Book Author & Semester Badges */}
+          <div className="flex items-center space-x-2 text-[11px] mb-2">
+            {product.author && (
+              <span className="text-slate-600 font-medium truncate">
+                Author: <strong className="text-slate-800">{product.author}</strong>
+              </span>
+            )}
+            {product.semester && (
+              <span className="bg-amber-100 text-amber-800 font-extrabold px-2 py-0.5 rounded-md text-[10px] shrink-0">
+                {product.semester}
+              </span>
+            )}
+          </div>
 
           <p className="text-slate-500 text-xs line-clamp-2 mb-3 leading-relaxed">
             {product.description}

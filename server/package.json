@@ -1,7 +1,7 @@
 {
   "name": "college-exchange-server",
   "version": "1.0.0",
-  "description": "Backend API Server for College Exchange / Resell Hub",
+  "description": "Backend API Server for BCA College Book Exchange / Resell Hub",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
