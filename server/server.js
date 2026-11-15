@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const path = require('path');
+const fs = require('fs');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -72,16 +73,19 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve static frontend build in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
+// Serve static frontend build (when client/dist exists or in production)
+const distPath = path.join(__dirname, '../client/dist');
+const indexHtml = path.join(distPath, 'index.html');
+
+if (fs.existsSync(indexHtml) || process.env.NODE_ENV === 'production') {
+  app.use(express.static(distPath));
 
   // For any route other than /api, serve index.html (SPA Fallback)
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) {
       return next();
     }
-    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+    res.sendFile(indexHtml);
   });
 }
 
