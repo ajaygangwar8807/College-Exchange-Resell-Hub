@@ -8,7 +8,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const seedAdmin = async () => {
   try {
-    await connectDB();
+    await connectDB();  
 
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@collegeexchange.edu';
     const adminPassword = process.env.ADMIN_PASSWORD || 'AdminPass123!';
