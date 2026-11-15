@@ -40,7 +40,9 @@ app.use(
 );
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL
+      ? process.env.CLIENT_URL.split(',').map(url => url.trim())
+      : true,
     credentials: true,
   })
 );
@@ -75,7 +77,7 @@ app.get('/api/health', (req, res) => {
 
 // Serve static frontend build (when client/dist exists or in production)
 const distPath = path.join(__dirname, '../client/dist');
-const indexHtml = path.join(distPath, 'index.html');
+const indexHtml = path.join(distPath, 'index.html'); 
 
 if (fs.existsSync(indexHtml) || process.env.NODE_ENV === 'production') {
   app.use(express.static(distPath));
